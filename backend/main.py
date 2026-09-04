@@ -3,6 +3,14 @@ import requests
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
+from pathlib import Path
+from fastapi.responses import FileResponse
+
+
+BASE_DIR = Path(__file__).resolve().parent.parent
+FRONTEND_FILE = BASE_DIR / "frontend" / "index.html"
+
+
 app = FastAPI(title="Netflix AI Recommendation System")
 app.add_middleware(
     CORSMiddleware,
@@ -14,9 +22,8 @@ app.add_middleware(
 
 @app.get("/")
 def home():
-    return {
-        "message": "Netflix AI Backend is Running!"
-    }
+    return FileResponse(FRONTEND_FILE)
+
 @app.get("/models")
 def models():
     response = requests.get("http://127.0.0.1:1234/v1/models")
