@@ -1,87 +1,68 @@
-# 🎬 LUKI – AI Movie Recommendation System
+# 🎬 LUKI – AI-Powered Movie Recommendation System
 
-LUKI is an AI-powered movie recommendation system that suggests similar movies using collaborative filtering and semantic similarity. It also provides AI-generated explanations for why each movie is recommended.
+LUKI is a full-stack AI-powered movie recommendation system designed to help users discover movies based on their interests and the movies they already enjoy. The application combines a modern interactive web interface, a Python-based FastAPI backend, machine learning techniques, external movie data, and a local Large Language Model (LLM) to create a more intelligent and engaging movie discovery experience.
 
----
+Instead of simply displaying a list of popular movies, LUKI allows users to search for a movie and receive recommendations based on similarity between movies. The recommendation engine analyzes available movie information and identifies movies that are most relevant to the user's selected title. The results are then presented through an interactive interface where users can explore recommendations, filter movies by genre, revisit recent searches, and view additional information.
 
-## ✨ Features
+One of the main features of LUKI is **"LUKI's Take"**, an AI-generated explanation system that provides a natural-language explanation of why a particular movie may be relevant to the user's interests. This feature integrates a locally running Large Language Model through LM Studio, allowing the application to combine traditional recommendation techniques with generative AI.
 
-- 🔍 Search any movie
-- 🤖 AI-powered movie recommendations
-- 🧠 "LUKI's Take" AI explanation
-- 🎭 Genre filtering
-- 🖼️ Movie posters from TMDB
-- 🕒 Recent search history
-- ⚡ Skeleton loading animation
-- 📱 Responsive modern UI
-- 🔗 FastAPI backend
+The project was developed as a hands-on exploration of how machine learning systems, REST APIs, frontend development, external APIs, and Large Language Models can be integrated into a single full-stack application.
 
 ---
 
-## 🛠️ Tech Stack
+## 🎯 Project Objective
 
-### Frontend
-- HTML
-- CSS
-- JavaScript
+The primary objective of LUKI is to build an intelligent movie discovery platform that goes beyond a traditional search interface.
 
-### Backend
-- Python
-- FastAPI
+The system aims to:
 
-### APIs
-- TMDB API
+- Help users discover movies similar to the ones they already enjoy.
+- Demonstrate the practical implementation of a movie recommendation engine.
+- Integrate machine learning techniques into a real-world web application.
+- Provide AI-generated explanations for movie recommendations.
+- Create a visually appealing and interactive user interface.
+- Connect a frontend application with a Python REST API backend.
+- Integrate external movie data and posters using the TMDB API.
+- Explore the integration of local Large Language Models into web applications.
 
-### Machine Learning
-- Collaborative Filtering
-- Semantic Similarity
-
----
-
-## 📂 Project Structure
-
-```
-backend/
-frontend/
-data/
-models/
-notebooks/
-requirements.txt
-```
+LUKI demonstrates how multiple technologies can work together to solve a practical recommendation problem.
 
 ---
 
-## 🚀 How to Run
+# 🧠 How LUKI Works
 
-```bash
-pip install -r requirements.txt
-uvicorn app:app --reload
-```
+The overall workflow of the application follows the architecture below:
 
-Open:
-
-```
-http://127.0.0.1:8000
-```
-
----
-
-## 🔮 Future Improvements
-
-- User authentication
-- Personalized recommendations
-- Movie trailers
-- Deployment
-- Better recommendation model
-
----
-## Drawbacks
-
- - due to less availability of the resources luki can only recommend movies upto 1995
- - and this may leads to a major setback of posters 
-
-
-## 👨‍💻 Author
-
-
-Prathyusha
+```text
+User
+  │
+  │ Searches for a movie
+  ▼
+┌───────────────────────────────┐
+│           Frontend            │
+│   HTML • CSS • JavaScript     │
+└───────────────┬───────────────┘
+                │
+                │ API Request
+                ▼
+┌───────────────────────────────┐
+│        FastAPI Backend        │
+│            Python             │
+└───────────────┬───────────────┘
+                │
+        ┌───────┴────────┐
+        │                │
+        ▼                ▼
+┌──────────────┐   ┌───────────────┐
+│Recommendation│   │ AI Explanation│
+│    Engine    │   │     Engine    │
+└──────┬───────┘   └───────┬───────┘
+       │                   │
+       ▼                   ▼
+Movie Similarity      Qwen / Local LLM
+       │                   │
+       └─────────┬─────────┘
+                 │
+                 ▼
+        Movie Recommendations
+        + AI Explanation
